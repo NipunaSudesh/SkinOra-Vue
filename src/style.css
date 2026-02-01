@@ -1,0 +1,173 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Colors */
+  --color-primary: #000080;
+  --color-secondary: #FFD700;
+  --color-accent: #F8FAFC;
+
+  /* Screens */
+  --screen-xs: 360px;
+  --screen-sm: 640px;
+  --screen-md: 768px;
+  --screen-lg: 1024px;
+  --screen-xl: 1280px;
+  --screen-2xl: 1536px;
+
+  /* Max widths */
+  --max-w-8xl: 90rem;
+  --max-w-9xl: 100rem;
+  --max-w-10xl: 120rem;
+  --max-w-11xl: 140rem;
+}
+
+
+@layer components {
+  .container-card {
+    @apply 
+        
+           w-full mx-auto
+           px-4
+           sm:px-12
+           lg:px-16
+           xl:px-20
+           2xl:px-24;
+  }
+}
+
+/* @layer components {
+  .page-wrapper {
+    @apply  mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-14;
+  }
+} */
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
+}
+.heart {
+  position: fixed;
+  width: 14px;
+  height: 14px;
+  background: #ff5c8a;
+  transform: rotate(45deg);
+  pointer-events: none;
+  animation: heartFloat 1s ease-out forwards;
+  z-index: 9999;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: #ec4c79;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -7px;
+  left: 0;
+}
+
+.heart::after {
+  left: -7px;
+  top: 0;
+}
+
+@keyframes heartFloat {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(45deg) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, -40px) rotate(45deg) scale(0.6);
+  }
+}
+
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.card {
+  padding: 2em;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
