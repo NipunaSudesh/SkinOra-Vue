@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import PublicLayout from "../components/layout/PublicLayout.vue";
 import Banner from "../views/home/Banner.vue";
 import index from "../views/home/index.vue";
+import About from "../views/About.vue";
 
 const routes = [
   {
@@ -16,10 +17,12 @@ const routes = [
     name: 'AllProducts',
     component: Banner,
   },
-  {
-    path: '/about',
-    name: 'About',
-    component: Banner,
+    {
+    path: "/about",
+    component: PublicLayout,
+    children: [
+      { path: "", component: About }, 
+    ],
   },
   {
     path: '/product-category/:category',
