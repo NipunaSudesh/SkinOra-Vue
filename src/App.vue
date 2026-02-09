@@ -1,12 +1,17 @@
 <!-- App.vue -->
 <script setup>
 import NavBar from './components/layout/NavBar.vue'
+import Banner from './views/home/Banner.vue';
 // or wherever your NavBar really is
 </script>
 
 <template>
-  <NavBar />
 
+    <!-- <Banner /> -->
+  <router-view />
+
+
+<!-- <Banner /> -->
 
   <!-- Put real content here -->
   <!-- <div class="bg-primary text-secondary mt-36">

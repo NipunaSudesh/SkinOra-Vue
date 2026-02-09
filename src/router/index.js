@@ -1,15 +1,35 @@
 import { createRouter, createWebHistory } from "vue-router";
 import PublicLayout from "../components/layout/PublicLayout.vue";
-import HelloWorld from "../components/HelloWorld.vue"; // ← use this one if it still exists
+import Banner from "../views/home/Banner.vue";
 
 const routes = [
   {
     path: "/",
     component: PublicLayout,
     children: [
-      { path: "", component: HelloWorld }, // or your real Home component
+      { path: "", component: Banner }, 
     ],
   },
+    {
+    path: '/all-products',
+    name: 'AllProducts',
+    component: Banner,
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: Banner,
+  },
+  {
+    path: '/product-category/:category',
+    name: 'ProductCategory',
+    component: Banner,
+  },
+    { path: "/profile", component: Banner },
+  { path: "/all-categories", component: Banner },
+  { path: "/contact", component: Banner },
+  { path: "/privacy-policy", component: Banner },
+  { path: "/terms", component: Banner },
   // add 404 later
   // { path: "/:pathMatch(.*)*", component: () => import("../views/ErrorPage.vue") },
 ];
