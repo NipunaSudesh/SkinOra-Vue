@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
 import PublicLayout from "../components/layout/PublicLayout.vue";
 import Banner from "../views/home/Banner.vue";
+import index from "../views/home/index.vue";
 
 const routes = [
   {
     path: "/",
     component: PublicLayout,
     children: [
-      { path: "", component: Banner }, 
+      { path: "", component: index }, 
     ],
   },
     {
