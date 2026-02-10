@@ -9,6 +9,7 @@ import ThankYou from "../views/ThankYou.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import Contact from "../views/Contact.vue";
+import Profile from "../views/Profile.vue";
 
 const routes = [
     {
@@ -23,6 +24,7 @@ const routes = [
       { path: "thank-you", name: "ThankYou", component: ThankYou },
       { path: "privacy-policy", name: "PrivacyPolicy", component: PrivacyPolicy },
       { path: "terms", name: "Terms", component: Terms },
+      { path: "profile", name: "Profile", component: Profile },
 
       { path: "all-products", name: "AllProducts", component: Banner },
       { path: "all-categories", name: "AllCategories", component: Banner },
@@ -34,7 +36,7 @@ const routes = [
       },
     ],
   },
-    { path: "/profile", component: Banner },
+ 
   { path: "/all-categories", component: Banner },
 
   // add 404 later
