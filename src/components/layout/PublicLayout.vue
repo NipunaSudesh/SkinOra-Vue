@@ -3,7 +3,7 @@
   <NavBar />
 
   <!-- Main Content -->
-  <main class="container-card mt-20 md:mt-32">
+  <main class="container-card mt-20 md:mt-32 ">
     <router-view />
   </main>
 
