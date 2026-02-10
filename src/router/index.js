@@ -11,6 +11,7 @@ import Register from "../views/Register.vue";
 import Contact from "../views/Contact.vue";
 import Profile from "../views/Profile.vue";
 import SearchPage from "../views/SearchPage.vue";
+import SingleProduct from "../views/singleProduct/SingleProduct.vue";
 
 const routes = [
     {
@@ -30,6 +31,13 @@ const routes = [
       { path: "all-products", name: "AllProducts", component: Banner },
       { path: "all-categories", name: "AllCategories", component: Banner },
       { path: "search", name: "Search", component: SearchPage },
+
+        {
+    path: "/product/slug/:slug",  
+    name: "SingleProduct",
+    component: SingleProduct,
+    props: true  
+  },
       {
         path: "product-category/:category",
         name: "ProductCategory",
