@@ -12,19 +12,19 @@
 
       <!-- Desktop Search -->
       <div class="hidden sm:flex flex-1 justify-center">
-        <div class="flex w-full max-w-sm mx-4">
+        <div class="flex w-full max-w-sm mx-4 bg-white rounded-full shadow">
           <input
             type="text"
             placeholder="Search for products, brands and more"
             v-model="searchTerm"
             @keydown.enter="handleSearch"
-            class="w-full h-9 px-4 border border-gray-300 rounded-l-full focus:outline-none"
+            class="w-full h-9 px-4 border border-gray-300 rounded-l-full"
           />
           <button
             @click="handleSearch"
-            class="bg-primary text-white h-9 px-4 rounded-r-full hover:bg-secondary flex items-center justify-center"
+            class="bg-primary text-white h-9 px-4 rounded-r-full hover:bg-secondary"
           >
-            <Icon :icon="searchIcon" class="w-5 h-5" />
+            <Icon :icon="searchIcon"  />
           </button>
         </div>
       </div>
@@ -33,16 +33,21 @@
       <div class="flex items-center gap-4">
         <!-- Mobile Search Toggle -->
         <button class="sm:hidden text-lg" @click="toggleMobileSearch">
-          <Icon :icon="showMobileSearch ? closeIcon : searchIcon" class="w-5 h-5" />
+          <Icon :icon="showMobileSearch ? closeIcon : searchIcon"  />
         </button>
 
         <!-- Cart & User -->
-        <Icon :icon="cartIcon" class="w-5 h-5 cursor-pointer" @click="handleCart" />
-        <Icon :icon="userIcon" class="w-5 h-5 cursor-pointer" @click="handleUser" />
+        <Icon :icon="cartIcon" class=" cursor-pointer" @click="handleCart" />
+        <Icon :icon="userIcon" class="cursor-pointer" @click="handleUser" />
 
         <!-- Mobile Menu Toggle -->
-        <button class="lg:hidden text-xl" @click="toggleMobileMenu">
-          <Icon :icon="showMobileMenu ? closeIcon : menuIcon" class="w-5 h-5" />
+        <button class="lg:hidden text-xl text-primary" @click="toggleMobileMenu">
+          <!-- <Icon :icon="showMobileMenu ? handleUser : handleUser" " /> -->
+  <Icon
+    :icon="showMobileMenu ? 'mdi:close' : 'mdi:menu'"
+    class="w-6 h-6"
+  />
+
         </button>
       </div>
 
@@ -146,6 +151,6 @@ const handleUser = () => {
 };
 </script>
 
-<style scoped>
-/* Optional: add smooth transition for mobile menus */
-</style>
+
+
+

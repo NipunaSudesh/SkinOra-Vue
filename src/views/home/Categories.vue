@@ -56,7 +56,10 @@
 
   </div>
 </template>
+<<<<<<< HEAD
 
+=======
+>>>>>>> ac165117a7417c26e5ae8f2328d1301b76aa000c
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
@@ -65,7 +68,11 @@ import CategoryCart from "../../components/cart/CategoryCart.vue";
 
 // Swiper
 import { Swiper, SwiperSlide } from "swiper/vue";
+<<<<<<< HEAD
 import { Autoplay } from "swiper/modules";
+=======
+import { Autoplay } from "swiper/modules"; // <-- Fix here
+>>>>>>> ac165117a7417c26e5ae8f2328d1301b76aa000c
 import "swiper/css";
 
 // Iconify
@@ -76,8 +83,12 @@ const SKINORA_API_URL = import.meta.env.VITE_SKINORA_API_URL;
 
 // State
 const categories = ref([]);
+<<<<<<< HEAD
 const swiperRef = ref(null);      // component ref
 const swiperInstance = ref(null); // actual Swiper instance
+=======
+const swiperRef = ref(null);
+>>>>>>> ac165117a7417c26e5ae8f2328d1301b76aa000c
 const router = useRouter();
 
 // Fetch categories
@@ -86,8 +97,12 @@ const fetchCategories = async () => {
     const res = await fetch(`${SKINORA_API_URL}/api/categories`);
     if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
     const data = await res.json();
+<<<<<<< HEAD
     categories.value = Array.isArray(data) ? data : [];
     console.log("Categories:", categories.value);
+=======
+    categories.value = data;
+>>>>>>> ac165117a7417c26e5ae8f2328d1301b76aa000c
   } catch (error) {
     console.error("Error fetching categories:", error.message);
   }
@@ -99,8 +114,13 @@ onMounted(() => {
 });
 
 // Swiper navigation
+<<<<<<< HEAD
 const slidePrev = () => swiperInstance.value?.slidePrev();
 const slideNext = () => swiperInstance.value?.slideNext();
+=======
+const slidePrev = () => swiperRef.value?.swiper.slidePrev();
+const slideNext = () => swiperRef.value?.swiper.slideNext();
+>>>>>>> ac165117a7417c26e5ae8f2328d1301b76aa000c
 
 // Breakpoints
 const breakpoints = {
@@ -112,11 +132,19 @@ const breakpoints = {
 
 // Swiper instance
 const onSwiper = (swiper) => {
+<<<<<<< HEAD
   swiperInstance.value = swiper;
+=======
+  swiperRef.value = swiper;
+>>>>>>> ac165117a7417c26e5ae8f2328d1301b76aa000c
 };
 
 // Navigation
 const navigateToAllCategories = () => {
   router.push("/all-categories");
 };
+<<<<<<< HEAD
 </script>
+=======
+</script>
+>>>>>>> ac165117a7417c26e5ae8f2328d1301b76aa000c

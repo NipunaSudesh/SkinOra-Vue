@@ -96,8 +96,13 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 
+<<<<<<< HEAD
 import Typography from "../components/Theme/Typography.vue";
 import TextInput from "../components/Theme/TextInput.vue";
+=======
+import Typography from "../Components/Theme/Typography.vue";
+import TextInput from "../Components/Theme/TextInput.vue";
+>>>>>>> ac165117a7417c26e5ae8f2328d1301b76aa000c
 import { logo } from "../assets/images";
 
 const router = useRouter();
