@@ -12,6 +12,9 @@ import Contact from "../views/Contact.vue";
 import Profile from "../views/Profile.vue";
 import SearchPage from "../views/SearchPage.vue";
 import SingleProduct from "../views/singleProduct/SingleProduct.vue";
+import AllProducts from "../views/AllProducts.vue";
+import AllCategories from "../views/AllCategories.vue";
+import CategoryPage from "../views/singleCategory/CategoryPage.vue";
 
 const routes = [
     {
@@ -28,8 +31,8 @@ const routes = [
       { path: "terms", name: "Terms", component: Terms },
       { path: "profile", name: "Profile", component: Profile },
 
-      { path: "all-products", name: "AllProducts", component: Banner },
-      { path: "all-categories", name: "AllCategories", component: Banner },
+      { path: "all-products", name: "AllProducts", component: AllProducts },
+      { path: "all-categories", name: "AllCategories", component:AllCategories },
       { path: "search", name: "Search", component: SearchPage },
 
         {
@@ -39,9 +42,9 @@ const routes = [
     props: true  
   },
       {
-        path: "product-category/:category",
+        path: "product-category/:slug",
         name: "ProductCategory",
-        component: Banner,
+        component: CategoryPage,
         props: true,
       },
     ],

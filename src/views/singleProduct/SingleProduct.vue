@@ -123,8 +123,8 @@
           :product-name="item.name"
           :product-desc="item.shortDescription"
           :rating="item.rating"
-          :o-price="item.oldPrice"
-          :n-price="item.price"
+          :OPrice="item.oldPrice"
+          :NPrice="item.price"
           :review-count="item.reviewCount"
         />
       </div>

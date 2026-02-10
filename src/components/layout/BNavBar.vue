@@ -2,16 +2,15 @@
 import { RouterLink } from "vue-router";
 
 const categories = [
-  { label: "All Products", slug: "all-products" },
-  { label: "Baby Care", slug: "product-category/baby-care" },
-  { label: "Body Care", slug: "product-category/body-care" },
-  { label: "Face Care", slug: "product-category/face-care" },
-  { label: "Hair Care", slug: "product-category/hair-care" },
-  { label: "Sunscreens", slug: "product-category/sunscreens" },
-  { label: "Serums", slug: "product-category/serums" },
-  { label: "Mens Grooming", slug: "product-category/mens-grooming" },
+  { label: "All Products", slug: "/all-products" },
+  { label: "Baby Care", slug: "/product-category/baby-care" },
+  { label: "Body Care", slug: "/product-category/body-care" },
+  { label: "Face Care", slug: "/product-category/face-care" },
+  { label: "Hair Care", slug: "/product-category/hair-care" },
+  { label: "Sunscreens", slug: "/product-category/sunscreens" },
+  { label: "Serums", slug: "/product-category/serums" },
+  { label: "Mens Grooming", slug: "/product-category/mens-grooming" },
   { label: "About Us", slug: "/about" },
-  // { label: "Contact Us", slug: "/contact" },
 ];
 </script>
 
