@@ -117,8 +117,8 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 
-import Typography from "../components/Theme/Typography.vue";
-import TextInput from "../components/Theme/TextInput.vue";
+import Typography from "../components/theme/Typography.vue";
+import TextInput from "../components/theme/TextInput.vue";
 import { logo } from "../assets/images";
 
 const router = useRouter();
