@@ -9,7 +9,7 @@
         <div class="flex flex-col items-center lg:items-start">
           <router-link to="/" class="flex items-center bg-white rounded-md py-2 w-[200px]">
             <img :src="logo" alt="Skinora Logo" class="h-12" />
-            <h2 class="text-lg font-bold text-primary">
+            <h2 class="text-2xl font-semibold text-primary">
               Skin<span class="text-secondary">Ora</span>
             </h2>
           </router-link>
