@@ -1,21 +1,6 @@
-<script setup>
-import { RouterLink } from "vue-router";
-
-defineProps({
-  img: String,
-  category: String,
-  description: String,
-  slug: String,
-});
-</script>
-
 <template>
-  <RouterLink
-    :to="`/product-category/${slug}`"
-    class="group w-72"
-  >
+  <RouterLink :to="`/product-category/${slug}`" class="group w-72">
     <div class="relative flex flex-col items-center cursor-pointer">
-
       <!-- Image Container -->
       <div class="relative w-full h-60 overflow-hidden rounded-lg">
         <img
@@ -23,7 +8,6 @@ defineProps({
           :alt="category"
           class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
-
         <!-- Hover Overlay -->
         <div
           class="absolute inset-0 flex items-center justify-center
@@ -35,14 +19,26 @@ defineProps({
           </p>
         </div>
       </div>
-
       <!-- Title -->
       <h4
         class="mt-3 font-bold text-primary transition-colors duration-300 group-hover:text-secondary"
       >
         {{ category }}
       </h4>
-
     </div>
   </RouterLink>
 </template>
+
+<script setup>
+import { RouterLink } from "vue-router";
+
+const props = defineProps({
+  img: String,
+  category: String,
+  description: String,
+  slug: String,
+});
+
+console.log("CategoryCart slug:", props.slug); 
+
+</script>
