@@ -35,7 +35,7 @@
 <script setup>
 import { ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
-import ProductCart from "../Components/cart/ProductCart.vue";
+import ProductCart from "../components/cart/ProductCart.vue";
 
 const SKINORA_API_URL = import.meta.env.VITE_SKINORA_API_URL;
 
