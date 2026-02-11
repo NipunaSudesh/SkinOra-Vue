@@ -196,15 +196,22 @@ const handleCart = async () => {
     console.error(err.message);
   }
 };
-
-// Buy Now
 const handleBuyNow = () => {
+  if (!product.value) return;
+
   const checkoutItem = {
-    id: product.value._id,
-    slug: product.value.slug,
-    name: product.value.name,
-    imageUrl: product.value.imageUrl,
-    price: product.value.price,
+    product: {
+      _id: product.value._id,
+      slug: product.value.slug,
+      name: product.value.name,
+      imageUrl: product.value.imageUrl,
+      price: product.value.price,
+      stockStatus: product.value.stockStatus,
+      oldPrice: product.value.oldPrice,
+      discountPercent: product.value.discountPercent,
+      category: product.value.category,
+      brand: product.value.brand,
+    },
     qty: qty.value,
   };
 
@@ -212,11 +219,21 @@ const handleBuyNow = () => {
   const shipping = 350;
   const total = subtotal + shipping;
 
-  router.push({ 
-    path: "/checkout", 
-    state: { items: [checkoutItem], subtotal, shipping, total } 
-  });
+  localStorage.setItem(
+    "checkoutData",
+    JSON.stringify({
+      items: [checkoutItem], 
+      subtotal,
+      shipping,
+      total,
+    })
+  );
+
+  router.push("/checkout");
 };
+
+
+
 
 // ON MOUNT
 onMounted(fetchProduct);

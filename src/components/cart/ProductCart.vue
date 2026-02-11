@@ -1,5 +1,5 @@
 <template>
-  <div class="group w-64 bg-white rounded-xl shadow-md border border-gray-300 hover:shadow-2xl transition-all duration-300">
+  <div @click="goToProduct" class="group w-64 bg-white rounded-xl shadow-md border border-gray-300 hover:shadow-2xl transition-all duration-300">
     <!-- Image -->
     <div class="relative w-full h-60 overflow-hidden rounded-t-xl">
       <img
@@ -86,6 +86,11 @@ const {
   rating: { type: Number, default: 0 },
   reviewCount: { type: Number, default: 0 },
 });
+
+const goToProduct = () => {
+  if (!slug) return;
+  router.push(`/product/slug/${slug}`);
+};
 
 const liked = ref(false);
 const router = useRouter();
