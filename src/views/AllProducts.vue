@@ -75,8 +75,8 @@
             :product-name="product.name"
             :product-desc="product.shortDescription"
             :rating="product.rating"
-            :o-price="product.oldPrice"
-            :n-price="product.price"
+            :OPrice="product.oldPrice"
+            :NPrice="product.price"
             :review-count="product.reviewCount"
           />
           <p v-if="currentProducts.length === 0" class="text-gray-500 mt-10">
