@@ -15,37 +15,34 @@ import SingleProduct from "../views/singleProduct/SingleProduct.vue";
 import AllProducts from "../views/AllProducts.vue";
 import AllCategories from "../views/AllCategories.vue";
 import CategoryPage from "../views/singleCategory/CategoryPage.vue";
-import AddCart from "../components/cart/AddCart.vue";
 import AddToCart from "../views/AddToCart.vue";
 import Checkout from "../views/Checkout.vue";
 
+// Routes
 const routes = [
-    {
+  // Public layout routes
+  {
     path: "/",
     component: PublicLayout,
     children: [
       { path: "", name: "Home", component: index },
       { path: "about", name: "About", component: About },
       { path: "contact", name: "Contact", component: Contact },
-      { path: "login", name: "Login", component: Login },
-      { path: "register", name: "Register", component: Register },
       { path: "thank-you", name: "ThankYou", component: ThankYou },
       { path: "privacy-policy", name: "PrivacyPolicy", component: PrivacyPolicy },
       { path: "terms", name: "Terms", component: Terms },
       { path: "profile", name: "Profile", component: Profile },
-
       { path: "all-products", name: "AllProducts", component: AllProducts },
-      { path: "all-categories", name: "AllCategories", component:AllCategories },
+      { path: "all-categories", name: "AllCategories", component: AllCategories },
       { path: "search", name: "Search", component: SearchPage },
       { path: "cart", name: "Cart", component: AddToCart },
-      { path: "checkout", name: "Checkout", component: Checkout},
-
-        {
-    path: "/product/slug/:slug",  
-    name: "SingleProduct",
-    component: SingleProduct,
-    props: true  
-  },
+      { path: "checkout", name: "Checkout", component: Checkout },
+      {
+        path: "product/slug/:slug",
+        name: "SingleProduct",
+        component: SingleProduct,
+        props: true,
+      },
       {
         path: "product-category/:slug",
         name: "ProductCategory",
@@ -54,11 +51,14 @@ const routes = [
       },
     ],
   },
- 
-  { path: "/all-categories", component: Banner },
 
-  // add 404 later
-   { path: "/:pathMatch(.*)*", component: () => import("../views/ErrorPage.vue") },
+  // Routes outside PublicLayout
+  { path: "/login", name: "Login", component: Login },
+  { path: "/register", name: "Register", component: Register },
+
+
+  // 404 fallback
+  { path: "/:pathMatch(.*)*", name: "NotFound", component: () => import("../views/ErrorPage.vue") },
 ];
 
 const router = createRouter({
