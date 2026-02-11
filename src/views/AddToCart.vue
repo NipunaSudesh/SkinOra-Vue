@@ -169,16 +169,20 @@ const checkout = () => {
     return;
   }
 
-  router.push({
-    path: "/checkout",
-    state: {
+  // Save checkout data to localStorage
+  localStorage.setItem(
+    "checkoutData",
+    JSON.stringify({
       items: selectedCartItems.value,
       subtotal: subTotal.value,
       shipping: shippingFee.value,
       total: total.value,
-    },
-  });
+    })
+  );
+
+  router.push("/checkout");
 };
+
 
 onMounted(fetchCart);
 </script>

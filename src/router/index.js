@@ -17,6 +17,7 @@ import AllCategories from "../views/AllCategories.vue";
 import CategoryPage from "../views/singleCategory/CategoryPage.vue";
 import AddCart from "../components/cart/AddCart.vue";
 import AddToCart from "../views/AddToCart.vue";
+import Checkout from "../views/Checkout.vue";
 
 const routes = [
     {
@@ -37,6 +38,7 @@ const routes = [
       { path: "all-categories", name: "AllCategories", component:AllCategories },
       { path: "search", name: "Search", component: SearchPage },
       { path: "cart", name: "Cart", component: AddToCart },
+      { path: "checkout", name: "Checkout", component: Checkout},
 
         {
     path: "/product/slug/:slug",  
