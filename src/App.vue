@@ -1,8 +1,5 @@
 
 <script setup>
-// import { provideCart } from "./context/CartContext.js";
-
-// provideCart();
 </script>
 
 <template>
