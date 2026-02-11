@@ -73,6 +73,7 @@
 import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import CartItem from "../components/cart/AddCart.vue";
+import { cartStore } from "../stores/cart.js";
 
 const SKINORA_API_URL = import.meta.env.VITE_SKINORA_API_URL;
 const router = useRouter();
@@ -125,35 +126,74 @@ const updateQty = (slug, newQty) => {
   if (!item) return;
   item.qty = newQty;
 };
-
 const removeItem = async (slug) => {
-  // Find the product in the cart
-  const product = cartItems.value.find((i) => i.product.slug === slug);
+  const token = localStorage.getItem("token");
+  if (!token) return router.push("/login");
+
+  // Find product BEFORE removing
+  const product = cartItems.value.find(
+    (i) => i.product.slug === slug
+  );
   if (!product) return;
 
-  try {
-    const token = localStorage.getItem("token");
-    if (!token) return router.push("/login");
 
-    // Call backend DELETE API
-    const res = await fetch(`${SKINORA_API_URL}/api/cart/remove/${product.product._id}`, {
+  cartItems.value = cartItems.value.filter(
+    (i) => i.product.slug !== slug
+  );
+
+  selectedItems.value = selectedItems.value.filter(
+    (s) => s !== slug
+  );
+
+
+  cartStore.items = cartStore.items.filter(
+    (i) => i.product.slug !== slug
+  );
+
+  try {
+    await fetch(`${SKINORA_API_URL}/api/cart/remove/${product.product._id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
-    if (!res.ok) throw new Error("Failed to remove item");
-
-    // Remove from local cartItems so UI updates immediately
-    cartItems.value = cartItems.value.filter(i => i.product.slug !== slug);
-    selectedItems.value = selectedItems.value.filter(s => s !== slug);
-
     console.log("Item removed successfully!");
   } catch (error) {
     console.error("Error removing item:", error.message);
   }
 };
+
+// const removeItem = async (slug) => {
+//   // Find the product in the cart
+//   const product = cartItems.value.find((i) => i.product.slug === slug);
+//   if (!product) return;
+
+//   try {
+//     const token = localStorage.getItem("token");
+//     if (!token) return router.push("/login");
+
+//     // Call backend DELETE API
+//     const res = await fetch(`${SKINORA_API_URL}/api/cart/remove/${product.product._id}`, {
+//       method: "DELETE",
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//       },
+//     });
+
+//     if (!res.ok) throw new Error("Failed to remove item");
+
+//     // Remove from local cartItems so UI updates immediately
+//     cartItems.value = cartItems.value.filter(i => i.product.slug !== slug);
+//     selectedItems.value = selectedItems.value.filter(s => s !== slug);
+//     cartStore.items = cartStore.items.filter(
+//       (item) => item.product.slug !== slug
+//     );
+//     console.log("Item removed successfully!");
+//   } catch (error) {
+//     console.error("Error removing item:", error.message);
+//   }
+// };
 
 // Select / Unselect
 const toggleSelectItem = (slug) => {

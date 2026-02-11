@@ -104,8 +104,6 @@ const handleLike = () => {
 const handleShare = () => {
   alert("Share functionality not implemented");
 };
-
-// Add to Cart
 const handleCart = async () => {
   const token = localStorage.getItem("token");
   if (!token) {
@@ -124,12 +122,49 @@ const handleCart = async () => {
     });
 
     if (!res.ok) throw new Error("Failed to add to cart");
- cartStore.addItem({ product: { _id: id, slug, name: productName, price: NPrice }, qty: 1 });
-    alert("Product added to cart successfully!");
-    router.push("/cart");
+
+    // ✅ Fetch updated cart from backend
+    const cartRes = await fetch(`${SKINORA_API_URL}/api/cart`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const cartData = await cartRes.json();
+
+    // ✅ Update global store
+    cartStore.setItems(cartData.filter(i => i.product));
+
+    // alert("Product added to cart successfully!");
   } catch (error) {
     console.error("Add to cart error:", error.message);
-    alert("Failed to add to cart");
+    // alert("Failed to add to cart");
   }
 };
+
+// Add to Cart
+// const handleCart = async () => {
+//   const token = localStorage.getItem("token");
+//   if (!token) {
+//     router.push("/login");
+//     return;
+//   }
+
+//   try {
+//     const res = await fetch(`${SKINORA_API_URL}/api/cart/add`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${token}`,
+//       },
+//       body: JSON.stringify({ productId: id, qty: 1 }),
+//     });
+
+//     if (!res.ok) throw new Error("Failed to add to cart");
+//  cartStore.addItem({ product: { _id: id, slug, name: productName, price: NPrice }, qty: 1 });
+//     alert("Product added to cart successfully!");
+//     router.push("/cart");
+//   } catch (error) {
+//     console.error("Add to cart error:", error.message);
+//     alert("Failed to add to cart");
+//   }
+// };
 </script>

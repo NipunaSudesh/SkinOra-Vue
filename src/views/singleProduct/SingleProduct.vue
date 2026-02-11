@@ -138,6 +138,7 @@ import { ref, onMounted, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import ProductCart from "../../components/cart/ProductCart.vue";
 import Header from "../../components/theme/Header.vue";
+import { cartStore } from "../../stores/cart.js";
 
 import { Icon } from "@iconify/vue";
 
@@ -191,6 +192,18 @@ const handleCart = async () => {
     });
 
     if (!res.ok) throw new Error("Failed to add to cart");
+        //  Immediately update store (no refresh needed)
+    cartStore.addItem({
+      product: {
+        _id: product.value._id,
+        slug: product.value.slug,
+        name: product.value.name,
+        imageUrl: product.value.imageUrl,
+        price: product.value.price,
+      },
+      qty: qty.value,
+    });
+
     router.push("/cart");
   } catch (err) {
     console.error(err.message);
