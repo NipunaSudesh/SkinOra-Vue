@@ -97,15 +97,24 @@
     </div>
   </div>
 </template>
-
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { logo } from "../../assets/images/index.js";
 import { Icon } from '@iconify/vue';
 import Typography from "../theme/Typography.vue";
+import { cartStore } from "../../stores/cart.js";
 
 const SKINORA_API_URL = import.meta.env.VITE_SKINORA_API_URL;
+const router = useRouter();
+
+// State
+const showMobileSearch = ref(false);
+const showMobileMenu = ref(false);
+const searchTerm = ref("");
+
+// Reactive cart count from store
+const cartCount = computed(() => cartStore.count);
 
 // Categories
 const categories = [
@@ -119,15 +128,6 @@ const categories = [
   { label: "Mens Grooming", slug: "/product-category/mens-grooming" },
   { label: "About Us", slug: "/about" },
 ];
-
-// Router
-const router = useRouter();
-
-// State
-const showMobileSearch = ref(false);
-const showMobileMenu = ref(false);
-const searchTerm = ref("");
-const cartCount = ref(0);
 
 // Toggle mobile menus
 const toggleMobileSearch = () => {
@@ -155,8 +155,8 @@ const handleUser = () => {
   router.push(user ? "/profile" : "/login");
 };
 
-// Fetch cart items count from backend
-const fetchCartCount = async () => {
+// Fetch cart items from backend once
+const fetchCart = async () => {
   try {
     const token = localStorage.getItem("token");
     if (!token) return;
@@ -164,17 +164,12 @@ const fetchCartCount = async () => {
     const res = await fetch(`${SKINORA_API_URL}/api/cart`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    if (!res.ok) throw new Error("Failed to fetch cart");
-
     const data = await res.json();
-    cartCount.value = data.length;
-  } catch (error) {
-    console.log("Error fetching cart count:", error.message);
+    cartStore.setItems(data.filter(i => i.product)); // initialize store
+  } catch (err) {
+    console.error(err);
   }
 };
 
-// On mount
-onMounted(() => {
-  fetchCartCount();
-});
+onMounted(fetchCart);
 </script>

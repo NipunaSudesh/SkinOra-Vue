@@ -60,6 +60,7 @@ import FaHeart from '~icons/fa/heart';
 import FaShare from '~icons/fa/share-alt';
 import CiStar from '~icons/ci/star';
 import FaShoppingCart from '~icons/fa/shopping-cart';
+import { cartStore } from "../../stores/cart.js";
 
 const SKINORA_API_URL = import.meta.env.VITE_SKINORA_API_URL;
 
@@ -118,7 +119,7 @@ const handleCart = async () => {
     });
 
     if (!res.ok) throw new Error("Failed to add to cart");
-
+ cartStore.addItem({ product: { _id: id, slug, name: productName, price: NPrice }, qty: 1 });
     alert("Product added to cart successfully!");
     router.push("/cart");
   } catch (error) {

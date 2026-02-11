@@ -15,6 +15,7 @@
             :imageUrl="item.product.imageUrl"
             :name="item.product.name"
             :price="item.product.price"
+            :stockStatus="item.product.stockStatus"
             :oldPrice="item.product.oldPrice"
             :discountPercent="item.product.discountPercent"
             :category="item.product.category"
@@ -90,9 +91,10 @@ const subTotal = computed(() =>
 );
 
 const shippingFee = computed(() =>
-  selectedCartItems.value.length ? shipping_fee : 0
+  selectedCartItems.value.length > 0
+    ? shipping_fee * selectedCartItems.value.length
+    : 0
 );
-
 const total = computed(() => subTotal.value + shippingFee.value);
 
 // Fetch cart from backend
@@ -124,10 +126,33 @@ const updateQty = (slug, newQty) => {
   item.qty = newQty;
 };
 
-// Remove item
-const removeItem = (slug) => {
-  cartItems.value = cartItems.value.filter(i => i.product.slug !== slug);
-  selectedItems.value = selectedItems.value.filter(s => s !== slug);
+const removeItem = async (slug) => {
+  // Find the product in the cart
+  const product = cartItems.value.find((i) => i.product.slug === slug);
+  if (!product) return;
+
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) return router.push("/login");
+
+    // Call backend DELETE API
+    const res = await fetch(`${SKINORA_API_URL}/api/cart/remove/${product.product._id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!res.ok) throw new Error("Failed to remove item");
+
+    // Remove from local cartItems so UI updates immediately
+    cartItems.value = cartItems.value.filter(i => i.product.slug !== slug);
+    selectedItems.value = selectedItems.value.filter(s => s !== slug);
+
+    console.log("Item removed successfully!");
+  } catch (error) {
+    console.error("Error removing item:", error.message);
+  }
 };
 
 // Select / Unselect
