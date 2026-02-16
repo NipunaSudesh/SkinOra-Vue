@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-4 bg-white p-4 rounded-lg shadow">
+  <div class="flex flex-col sm:flex-row gap-4 bg-white p-4 rounded-lg shadow">
     <!-- CHECKBOX -->
     <input
       v-if="mode === 'cart'"
@@ -10,8 +10,17 @@
     />
 
     <!-- Product Image -->
-    <img :src="imageUrl" :alt="name" class="w-24 h-24 object-contain" />
+    <div class="flex ">
+      <img :src="imageUrl" :alt="name" class=" sm:w-24 h-40 sm:h-24 object-contain rounded bg-red-200" />
 
+      <span
+        v-if="stockStatus"
+        class="inline-block sm:hidden h-8 px-3 py-1 rounded-xl text-white text-sm font-medium"
+        :class="stockStatus === 'IN_STOCK' ? 'bg-green-500' : 'bg-red-500'"
+      >
+        {{ stockStatus.toLowerCase().replace('_', ' ') }}
+      </span>
+    </div>
     <div class="flex-1">
       <!-- Category & Brand -->
       <p class="text-xs text-gray-700">
@@ -28,7 +37,7 @@
         <span
           v-if="stockStatus"
           :class="[
-            'px-3 py-1 rounded-xl text-white text-sm font-medium',
+            'hidden sm:inline-block px-3 py-1 rounded-xl text-white text-sm font-medium',
             stockStatus === 'IN_STOCK' ? 'bg-green-500' : 'bg-red-500'
           ]"
         >
