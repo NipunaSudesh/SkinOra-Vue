@@ -260,7 +260,7 @@
                 {{ new Date(selectedOrder.placedAt || selectedOrder.createdAt).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' }) }}
               </p>
             </div>
-            <div>
+            <div class="flex justify-between">
               <p class="text-gray-600">Status</p>
               <span
                 class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase"
@@ -334,7 +334,7 @@
         <div class="mt-8 flex justify-end">
           <button
             @click="closeOrderDetails"
-            class="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition"
+            class="px-6 py-2 bg-primary hover:bg-secondary text-white rounded-lg hover:bg-gray-300 transition"
           >
             Close
           </button>
