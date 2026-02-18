@@ -11,7 +11,7 @@
 
     <!-- Product Image -->
     <div class="flex ">
-      <img :src="imageUrl" :alt="name" class=" sm:w-24 h-40 sm:h-24 object-contain rounded bg-red-200" />
+      <img :src="imageUrl" :alt="name" class=" sm:w-24 h-40 sm:h-24 object-contain rounded" />
 
       <span
         v-if="stockStatus"
