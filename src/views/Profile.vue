@@ -62,7 +62,7 @@
               </div>
               <div class="flex justify-between">
                 <span class="text-gray-600">Joined</span>
-                <span class="font-medium">{{ new Date(user.createdAt || Date.now()).getFullYear() }}</span>
+                <span class="font-medium">{{ new Date(user.createdAt || Date.now()).getFullYear() ||'10 Feb 2026' }}</span>
               </div>
             </div>
           </div>
@@ -151,11 +151,11 @@
                 {{ item.product?.name || `Product ${i + 1} (name unavailable)` }}
               </p>
               <p class="text-gray-600 mt-1">
-                Qty: {{ item.qty }} × LKR {{ item.price?.toLocaleString() || "—" }}
+                Qty: {{ item.qty }} × LKR {{ item.price?.toLocaleString() || "—" }}.00
               </p>
             </div>
             <div class="text-right font-medium text-gray-900 whitespace-nowrap">
-              LKR {{ (item.qty * (item.price || 0)).toLocaleString() }}
+              LKR {{ (item.qty * (item.price || 0)).toLocaleString() }}.00
             </div>
           </div>
         </div>
@@ -165,13 +165,13 @@
       <div class="pt-2 border-t space-y-2 text-sm">
         <div class="flex justify-between text-gray-700">
           <span>Subtotal</span>
-          <span>LKR {{ calculateSubtotal(order).toLocaleString() }}</span>
+          <span>LKR {{ calculateSubtotal(order).toLocaleString() }}.00</span>
         </div>
         <div class="flex justify-between text-gray-700">
           <span>
-            Shipping Fee (LKR 350 × {{ totalItemQuantity(order) }} item{{ totalItemQuantity(order) !== 1 ? 's' : '' }})
+            Shipping Fee (LKR 350.00 × {{ totalItemQuantity(order) }} item{{ totalItemQuantity(order) !== 1 ? 's' : '' }})
           </span>
-          <span>LKR {{ calculateShipping(order).toLocaleString() }}</span>
+          <span>LKR {{ calculateShipping(order).toLocaleString() }}.00</span>
         </div>
 
       </div>
@@ -253,7 +253,7 @@
 
         <div class="space-y-6">
           <!-- Order Info -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div class="grid-cols-1 md:grid-cols-1 gap-4 text-sm flex justify-between">
             <div>
               <p class="text-gray-600">Placed on</p>
               <p class="font-medium">
@@ -261,9 +261,9 @@
               </p>
             </div>
             <div class="flex justify-between">
-              <p class="text-gray-600">Status</p>
+              <!-- <p class="text-gray-600">Status</p> -->
               <span
-                class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase"
+                class="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs font-semibold uppercase text-center"
                 :class="{
                   'bg-yellow-100 text-yellow-800': selectedOrder.status === 'pending',
                   'bg-blue-100 text-blue-800': selectedOrder.status === 'processing',
@@ -291,11 +291,11 @@
                     {{ item.product?.name || `Product ${i + 1} (name unavailable)` }}
                   </p>
                   <p class="text-sm text-gray-600">
-                    Qty: {{ item.qty }} × LKR {{ item.price?.toLocaleString() || '—' }}
+                    Qty: {{ item.qty }} × LKR {{ item.price?.toLocaleString() || '—' }}.00
                   </p>
                 </div>
                 <div class="text-right font-medium">
-                  LKR {{ (item.qty * (item.price || 0)).toLocaleString() }}
+                  LKR {{ (item.qty * (item.price || 0)).toLocaleString() }}.00
                 </div>
               </div>
             </div>
@@ -316,16 +316,16 @@
           <div class="pt-4 border-t space-y-2 text-sm">
             <div class="flex justify-between text-gray-700">
               <span>Subtotal</span>
-              <span>LKR {{ calculateSubtotal(selectedOrder).toLocaleString() }}</span>
+              <span>LKR {{ calculateSubtotal(selectedOrder).toLocaleString() }}.00</span>
             </div>
             <div class="flex justify-between text-gray-700">
-              <span>Shipping Fee (LKR 350 × {{ totalItemQuantity(selectedOrder) }} item{{ totalItemQuantity(selectedOrder) !== 1 ? 's' : '' }})</span>
-              <span>LKR {{ calculateShipping(selectedOrder).toLocaleString() }}</span>
+              <span>Shipping Fee (LKR 350.00 × {{ totalItemQuantity(selectedOrder) }} item{{ totalItemQuantity(selectedOrder) !== 1 ? 's' : '' }})</span>
+              <span>LKR {{ calculateShipping(selectedOrder).toLocaleString() }}.00</span>
             </div>
             <div class="flex justify-between pt-3 border-t font-medium text-base">
               <span>Total Amount</span>
               <span class="text-gray-900 text-lg">
-                LKR {{ calculateGrandTotal(selectedOrder).toLocaleString() }}
+                LKR {{ calculateGrandTotal(selectedOrder).toLocaleString() }}.00
               </span>
             </div>
           </div>
